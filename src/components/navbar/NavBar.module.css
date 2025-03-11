@@ -1,0 +1,28 @@
+.navBarEstilo {
+  height: 100vh;
+  width: 5%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+}
+.navBarEstilo button {
+  background-color: #0844C4;
+  border-color: #0844C4;
+  width: 50%;
+  height: 4vh;
+  border-radius: 6px;
+}
+.navBarEstilo .buttonSair {
+  background-color: #63758D;
+  border-color: #63758D;
+}
+.navBarEstilo section {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}/*# sourceMappingURL=NavBar.module.css.map */

@@ -1,0 +1,140 @@
+.headerSolicitacao {
+  width: 20vw;
+}
+
+.layoutSolicitacao {
+  display: flex;
+}
+
+.containerPrincipalSolicitacao {
+  width: 95%;
+}
+
+.mainSolicitacao{
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
+
+.formSolicitacao {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+//Estilização padrão dos inputs, select e label
+input, select {
+  width: 100%;
+  height: 4vh;
+  border-radius: 6px;
+  border: 1px solid #CBD4E1;
+}
+
+label {
+  color: #23282f;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+//Estilização do grupo1
+.grupo1 {
+  width: 30%;
+  height: 25vh;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.inputNome {
+  width: 45%;
+}
+
+.inputEmpresa {
+  width: 25%;
+}
+
+.inputPrestacao {
+  width: 25%;
+}
+
+.inputMotivo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  textarea {
+    height: 10vh;
+    border: 1px solid #CBD4E1;
+    padding: 7px;
+  }
+}
+
+//Estilização da barra
+
+.barraVertical {
+  height: 24vh;
+  background-color: #cbd4e1;
+  width: 0.1vw;
+}
+
+//Estilização do grupo2
+
+.grupo2{
+  width: 65%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.inputData{
+  width: 25%;
+}
+
+.despesa{
+  width: 30%;
+}
+
+.centroDeCusto{
+  width: 40%;
+}
+
+
+.ordem, .divisoes, .pep, .distancia{
+width: 9%;
+}
+
+.moeda, .valorKm, .valorFaturado, .despesa{
+  width: 12%;
+}
+
+.botoes{
+  width: 12%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+
+//Estilização da tabela
+
+table{ 
+  width: 100%;
+  border: solid;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+th{
+  background-color: #CBD4E1;
+  font-weight: 400;
+  color: #23282F;
+  font-size: 1rem;
+}
+
+table, th,td{
+  border: solid #000000 2px;
+  text-align: center;
+}
