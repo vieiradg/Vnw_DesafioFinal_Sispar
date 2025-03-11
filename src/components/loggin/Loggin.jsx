@@ -21,20 +21,16 @@ const irParaReembolsos = () => {
           <p>Sistema de Emissão de Boletos e Parcelamento</p>
         </div>
 
-
         <form action="">
           <input type="email" name="email" id="iemail" placeholder="Email" />
           <input type="password" name="password" id="ipassword" placeholder="Senha" />
           <a href=""> Esqueci minha senha </a>
-
+          
           <div className={styles.buttonGroup}>
           <button className={styles.buttonEscuro} onClick={irParaReembolsos}> Entrar</button>
             <button className={styles.buttonClaro}>Criar conta</button>
           </div>
-
         </form>
-
-
       </section>
     </main>
   );

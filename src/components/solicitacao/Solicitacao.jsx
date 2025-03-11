@@ -2,8 +2,10 @@ import NavBar from "../navbar/NavBar.jsx";
 import Home from "../../assets/Dashboard/Vector (1).png";
 import Seta from "../../assets/Dashboard/Vector.png";
 import styles from "./Solicitacao.module.scss";
-import Lixeira from "../../assets/Solicitacao/lixeira.png"
-import Motivo from "../../assets/Solicitacao/motivo.png"
+import Lixeira from "../../assets/Solicitacao/lixeira.png";
+import Motivo from "../../assets/Solicitacao/motivo.png";
+import Mais from "../../assets/Solicitacao/mais.png";
+import Deletar from "../../assets/Solicitacao/deletar.png";
 
 function Solicitacao() {
   return (
@@ -129,8 +131,8 @@ function Solicitacao() {
               </div>
 
               <div className={styles.botoes}>
-                <button>Salvar</button>
-                <button> deletar</button>
+                <button className={styles.buttonEscuro}><img src={Mais} alt="Vetor de uma casinha" />Salvar</button>
+                <button className={styles.buttonClaro}><img src={Deletar} alt="Vetor de uma casinha" /></button>
               </div>
             </div>
           </form>

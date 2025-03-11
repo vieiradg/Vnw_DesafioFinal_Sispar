@@ -29,6 +29,7 @@ input, select {
   height: 4vh;
   border-radius: 6px;
   border: 1px solid #CBD4E1;
+  padding: 5px;
 }
 
 label {
@@ -111,12 +112,48 @@ width: 9%;
 }
 
 .botoes{
-  width: 12%;
+  width: 14%;
+  height: 9vh;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-}
+  padding-top: 1.6vh;
 
+  .buttonEscuro {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 4vw;
+    height: 4vh;
+    background-color: #001A3D;
+    color: #CBD4E1;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #00355E;
+      transform: translateY(-4px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .buttonClaro {
+    width: 2.5vw;
+    height: 4vh;
+    background-color: #00BEDD;
+    color: #CBD4E1;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #00A8C4;
+      transform: translateY(-4px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
 
 //Estilização da tabela
 
