@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import NavBar from "../navbar/NavBar.jsx";
 import Home from "../../assets/Dashboard/Vector (1).png";
 import Seta from "../../assets/Dashboard/Vector.png";
@@ -6,8 +8,53 @@ import Lixeira from "../../assets/Solicitacao/lixeira.png";
 import Motivo from "../../assets/Solicitacao/motivo.png";
 import Mais from "../../assets/Solicitacao/mais.png";
 import Deletar from "../../assets/Solicitacao/deletar.png";
+import Check from "../../assets/Solicitacao/check.png";
+import imgX from "../../assets/Solicitacao/x.png";
 
 function Solicitacao() {
+
+  const [colaborador, setColaborador] = useState(""); // Estado para o campo colaborador
+  const [empresa, setEmpresa] = useState(""); // Estado para o campo empresa
+  const [nPrestacao, setnPrestacao] = useState(""); // Estado para o campo número de prestação
+  const [descricao, setDescricao] = useState(""); // Estado para o campo  descrição
+  const [data, setData] = useState(""); // Estado para o campo data
+  const [motivo, setMotivo] = useState(""); // Estado para o campo motivo  //ESSE ESTADO É PARA QUEM TÁ FAZENDO AVANÇADO UTILIZANDO MODAL
+  const [tipoReembolso, setTipoReembolso] = useState(""); // Estado para o campo tipo de reembolso
+  const [centroCusto, setCentroCusto] = useState(""); // Estado para o campo centro de custo
+  const [ordemInterna, setorOrdemInterna] = useState(""); // Estado para o campo ordem interna
+  const [divisao, setDivisao] = useState(""); // Estado para o campo divisão
+  const [pep, setPep] = useState(""); // Estado para o campo pep
+  const [moeda, setMoeda] = useState(""); // Estado para o campo moeda
+  const [distanciaKm, setDistanciaKm] = useState(""); // Estado para o campo distância km
+  const [valorKm, setValorKm] = useState(""); // Estado para o campo valor km
+  const [valorFaturado, setValorFaturado] = useState(""); // Estado para o campo valor faturado
+  const [despesa, setDespesa] = useState(""); // Estado para o campo despesa
+
+  const [dadosReembolso, setDadosReembolso] = useState([]); // Estado para armazenar os dados do reembolso
+
+  const handleSubmit = () => {
+    const objetoReembolso = {
+      colaborador,
+      empresa,
+      nPrestacao,
+      descricao,
+      data,
+      motivo,
+      tipoReembolso,
+      centroCusto,
+      ordemInterna,
+      divisao,
+      pep,
+      moeda,
+      distanciaKm,
+      valorKm,
+      valorFaturado,
+      despesa,
+    };
+    setDadosReembolso(dadosReembolso.concat(objetoReembolso)); // Adiciona o novo reembolso ao estado
+
+  }
+
   return (
     <div className={styles.layoutSolicitacao}>
       <NavBar />
@@ -22,26 +69,26 @@ function Solicitacao() {
         </header>
 
         <main className={styles.mainSolicitacao}>
-          <form className={styles.formSolicitacao}>
+          <form onSubmit={(evento) => evento.preventDefault()} className={styles.formSolicitacao}>
             <div className={styles.grupo1}>
               <div className={styles.inputNome}>
                 <label htmlFor="">Nome Completo</label>
-                <input type="text" name="" id="nome-completo" />
+                <input value={colaborador} onChange={(evento)=> setColaborador(evento.target.value)} type="text" name="" id="nome-completo" />
               </div>
 
               <div className={styles.inputEmpresa}>
                 <label htmlFor="">Empresa</label>
-                <input type="text" name="" id="empresa" />
+                <input value={empresa} onChange={(evento) => setEmpresa(evento.target.value)} type="text" name="" id="empresa" />
               </div>
 
               <div className={styles.inputPrestacao}>
                 <label htmlFor="">Nº Prest. Contas</label>
-                <input type="text" name="" id="prestacao-contas" />
+                <input value={nPrestacao} onChange={(evento) => setnPrestacao(evento.target.value)} type="text" name="" id="prestacao-contas" />
               </div>
 
               <div className={styles.inputMotivo}>
                 <label htmlFor="">Descrição / Motivo do Reembolso</label>
-                <textarea name="" id="">
+                <textarea value={descricao} onChange={(evento) => setDescricao(evento.target.value)} name="" id="">
                   {" "}
                 </textarea>
               </div>
@@ -51,29 +98,28 @@ function Solicitacao() {
 
             <div className={styles.grupo2}>
               <div className={styles.inputData}>
-                <label htmlFor="">Data</label>
-                <input type="date" name="" id="" />
+                <input value={data} onChange={(evento) => setData(evento.target.value)} type="date" name="" id="" />
               </div>
 
               <div className={styles.tipoDeDespesa}>
                 <label htmlFor="">Tipo de Despesa</label>
 
-                <select name="" id="">
-                  <option value="">Selecionar</option>
-                  <option value=""> Alimentação </option>
-                  <option value=""> Combustível</option>
-                  <option value=""> Condução</option>
-                  <option value=""> Estacionamento</option>
-                  <option value=""> Viagem Admin.</option>
-                  <option value=""> Viagem Operacional</option>
-                  <option value=""> Eventos de representação</option>
+                <select value={tipoReembolso} onChange={(evento) => setTipoReembolso(evento.target.value)} name="" id="">
+                  <option value="Selecionar">Selecionar</option>
+                  <option value="alimentacao"> Alimentação </option>
+                  <option value="combustivel"> Combustível</option>
+                  <option value="conducao"> Condução</option>
+                  <option value="estacionamento"> Estacionamento</option>
+                  <option value="viagemAdmin."> Viagem Admin.</option>
+                  <option value="viagemOperacional"> Viagem Operacional</option>
+                  <option value="eventosDeRepresentacao"> Eventos de representação</option>
                 </select>
               </div>
 
               <div className={styles.centroDeCusto}>
                 <label htmlFor="">Centro de Custo</label>
 
-                <select name="" id="">
+                <select value={centroCusto} onChange={(evento) => setCentroCusto(evento.target.value)} name="" id="">
                   <option value="">Selecionar</option>
                   <option value="">
                     1100109002 - FIN CONTROLES INTERNOS MTZ
@@ -87,51 +133,51 @@ function Solicitacao() {
 
               <div className={styles.ordem}>
                 <label htmlFor="">Ord. Int.</label>
-                <input type="number" name="" id="" />
+                <input value={ordemInterna} onChange={(evento) => setorOrdemInterna(evento.target.value)} type="number" name="" id="" />
               </div>
 
               <div className={styles.divisoes}>
                 <label htmlFor="">Div.</label>
-                <input type="number" name="" id="" />
+                <input value={divisao} onChange={(evento) => setDivisao(evento.target.value)} type="number" name="" id="" />
               </div>
 
               <div className={styles.pep}>
                 <label htmlFor="">PEP</label>
-                <input type="number" name="" id="" />
+                <input value={pep} onChange={(evento) => setPep(evento.target.value)} type="number" name="" id="" />
               </div>
 
               <div className={styles.moeda}>
                 <label htmlFor="">Moeda</label>
-                <select name="" id="">
-                  <option value="">Selecionar</option>
-                  <option value="">BRL</option>
-                  <option value="">ARS</option>
+                <select value={moeda} onChange={(evento) => setMoeda(evento.target.value)} name="" id="">
+                  <option value="Selecionar">Selecionar</option>
+                  <option value="BRL">BRL</option>
+                  <option value="ARS">ARS</option>
                   <option value="">USD</option>
                 </select>
               </div>
 
               <div className={styles.distancia}>
                 <label htmlFor="">Dist / Km</label>
-                <input type="text" name="" id="" />
+                <input value={distanciaKm} onChange={(evento) => setDistanciaKm(evento.target.value)} type="text" name="" id="" />
               </div>
 
               <div className={styles.valorKm}>
                 <label htmlFor="">Valor / Km</label>
-                <input type="number" name="" id="" />
+                <input value={valorKm} onChange={(evento) => setValorKm(evento.target.value)} type="number" name="" id="" />
               </div>
 
               <div className={styles.valorFaturado}>
                 <label htmlFor="">Valor Faturado</label>
-                <input type="number" name="" id="" />
+                <input value={valorFaturado} onChange={(evento) => setValorFaturado(evento.target.value)} type="number" name="" id="" />
               </div>
 
               <div className={styles.despesa}>
                 <label htmlFor="">Despesa</label>
-                <input type="number" name="" id="" />
+                <input value={despesa} onChange={(evento) => setDespesa(evento.target.value)} type="number" name="" id="" />
               </div>
 
               <div className={styles.botoes}>
-                <button className={styles.buttonEscuro}><img src={Mais} alt="Vetor de uma casinha" />Salvar</button>
+                <button onClick={handleSubmit} className={styles.buttonEscuro}><img src={Mais} alt="Vetor de uma casinha" />Salvar</button>
                 <button className={styles.buttonClaro}><img src={Deletar} alt="Vetor de uma casinha" /></button>
               </div>
             </div>
@@ -165,29 +211,57 @@ function Solicitacao() {
                 <th>Despesa</th>
               </tr>
             </thead>
-
+            
             <tbody>
-              <tr>
-                <td> <img src={Lixeira} alt="ícone da lixeira" /> </td>
-                <td> Maria Vagas Figueira de Souza Santos Silva</td>
-                <td> Shell</td>
-                <td> 345</td>
-                <td> 10/07 </td>
-                <td> <img src={Motivo} alt="ícone do motivo" /></td>
-                <td>Alimentação</td>
-                <td>Fin</td>
-                <td>2</td>
-                <td>1</td>
-                <td>2</td>
-                <td>BRL</td>
-                <td>20km</td>
-                <td>5.00</td>
-                <td>20.00</td>
-                <td>45.00</td>
-              </tr>
+              {dadosReembolso.map((item, index) => (
+                <tr key={index}>
+                  <td><img src={Lixeira} alt="ícone da lixeira" /></td>
+                  <td>{item.colaborador}</td>
+                  <td>{item.empresa}</td>
+                  <td>{item.nPrestacao}</td>
+                  <td>{item.data}</td>
+                  <td> <img src={Motivo} alt="ícone do motivo" /></td>
+                  <td>{item.tipoReembolso}</td>
+                  <td>{item.centroCusto}</td>
+                  <td>{item.ordemInterna}</td>
+                  <td>{item.divisao}</td>
+                  <td>{item.pep}</td>
+                  <td>{item.moeda}</td>
+                  <td>{item.distanciaKm}</td>
+                  <td>{item.valorKm}</td>
+                  <td>{item.valorFaturado}</td>
+                  <td>{item.despesa}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </main>
+        <footer className={styles.containerFooter}>
+      <div className={styles.inputFooterFaturado}>
+        <label htmlFor="">Total Faturado</label>
+        <input type="text" />
+      </div>
+
+      <div className={styles.inputFooterDespesa}>
+        <label htmlFor="">Total Despesa</label>
+        <input type="text" />
+      </div>
+
+      <div>
+        <button className={styles.buttonCheck}>
+          <img src={Check} alt="ícone de check" />
+          <p>Enviar para Análise</p>
+        </button>
+      </div>
+
+      <div>
+        <button className={styles.buttonX}>
+          <img src={imgX} alt="ícone de cancelar" />
+          <p>Cancelar Solicitação</p>
+        </button>
+      </div>
+    </footer>
+
       </div>
     </div>
   );
