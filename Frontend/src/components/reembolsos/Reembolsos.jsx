@@ -1,4 +1,5 @@
 import styles from "./Reembolsos.module.scss";
+
 import Home from "../../assets/Dashboard/Vector (1).png";
 import Seta from "../../assets/Dashboard/Vector.png";
 import Analises from "../../assets/Dashboard/Análises.png";
@@ -76,12 +77,10 @@ function Reembolsos() {
             </div>
           </section>
 
-<section className={styles.containerSistema}>
-<img src={Sistema} alt="" />
-<p>Sistema atualizado.</p>
-</section>
-
-
+          <section className={styles.containerSistema}>
+            <img src={Sistema} alt="" />
+            <p>Sistema atualizado.</p>
+          </section>
         </section>
       </main>
     </div>

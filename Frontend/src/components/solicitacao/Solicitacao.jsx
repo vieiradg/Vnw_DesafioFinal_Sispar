@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Api from "../../services/Api.jsx";
+import styles from "./Solicitacao.module.scss";
 
 import NavBar from "../navbar/NavBar.jsx";
 import Home from "../../assets/Dashboard/Vector (1).png";
 import Seta from "../../assets/Dashboard/Vector.png";
-import styles from "./Solicitacao.module.scss";
 import Lixeira from "../../assets/Solicitacao/lixeira.png";
 import Motivo from "../../assets/Solicitacao/motivo.png";
 import Mais from "../../assets/Solicitacao/mais.png";
@@ -51,9 +52,54 @@ function Solicitacao() {
       valorFaturado,
       despesa,
     };
-    setDadosReembolso(dadosReembolso.concat(objetoReembolso)); // Adiciona o novo reembolso ao estado
-
+    setDadosReembolso(dadosReembolso.concat(objetoReembolso));
+    limparCampos(); 
   }
+
+  const limparCampos = () => {
+    setColaborador(""),
+    setEmpresa(""),
+    setnPrestacao(""),
+    setDescricao(""),
+    setData(""),
+    setMotivo(""),
+    setTipoReembolso(""),
+    setCentroCusto(""),
+    setorOrdemInterna(""),
+    setDivisao(""),
+    setPep(""),
+    setMoeda(""),
+    setDistanciaKm(""),
+    setValorKm("");
+    setValorFaturado(""),
+    setDespesa(""); // Limpa todos os campos após o envio
+  };
+
+  const [foiEnviado, setFoiEnviado] = useState(false); 
+  // Estado para verificar se o formulário foi enviado
+
+  const enviarParaAnalise = async () => { 
+    // async espera a resposta do servidor
+    try { 
+      // enviamos os dados para a api
+      // await = espera a resposta da api
+      // dentro do api.post primeiro argumento é o caminho da rota, segundo argumento é o dado que queremos enviar
+      const response = await Api.post("/refunds/new", dadosReembolso);
+      console.log("Dados enviados com sucesso:", response);
+      alert("Dados enviados com sucesso!");
+      setFoiEnviado(true); 
+    } catch (error) {
+      console.error("Erro ao enviar os dados:", error);
+    }
+  }
+
+  useEffect(() => {
+    if (foiEnviado) {
+      setDadosReembolso([]); // Limpa os dados após o envio
+      setFoiEnviado(false); // Reseta o estado para que o useEffect não seja chamado novamente
+      console.log("Formulário enviado com sucesso!");
+    }
+  }, [foiEnviado]); // O useEffect é chamado quando o estado foiEnviado muda
 
   return (
     <div className={styles.layoutSolicitacao}>
@@ -158,7 +204,7 @@ function Solicitacao() {
 
               <div className={styles.distancia}>
                 <label htmlFor="">Dist / Km</label>
-                <input value={distanciaKm} onChange={(evento) => setDistanciaKm(evento.target.value)} type="text" name="" id="" />
+                <input value={distanciaKm} onChange={(evento) => setDistanciaKm(evento.target.value)} type="number" name="" id="" />
               </div>
 
               <div className={styles.valorKm}>
@@ -178,7 +224,8 @@ function Solicitacao() {
 
               <div className={styles.botoes}>
                 <button onClick={handleSubmit} className={styles.buttonEscuro}><img src={Mais} alt="Vetor de uma casinha" />Salvar</button>
-                <button className={styles.buttonClaro}><img src={Deletar} alt="Vetor de uma casinha" /></button>
+
+                <button onClick={limparCampos} className={styles.buttonClaro}><img src={Deletar} alt="Vetor de uma casinha" /></button>
               </div>
             </div>
           </form>
@@ -236,31 +283,32 @@ function Solicitacao() {
             </tbody>
           </table>
         </main>
+
         <footer className={styles.containerFooter}>
-      <div className={styles.inputFooterFaturado}>
-        <label htmlFor="">Total Faturado</label>
-        <input type="text" />
-      </div>
+          <div className={styles.inputFooterFaturado}>
+            <label htmlFor="">Total Faturado</label>
+            <input type="text" />
+          </div>
 
-      <div className={styles.inputFooterDespesa}>
-        <label htmlFor="">Total Despesa</label>
-        <input type="text" />
-      </div>
+          <div className={styles.inputFooterDespesa}>
+            <label htmlFor="">Total Despesa</label>
+            <input type="text" />
+          </div>
 
-      <div>
-        <button className={styles.buttonCheck}>
-          <img src={Check} alt="ícone de check" />
-          <p>Enviar para Análise</p>
-        </button>
-      </div>
+          <div>
+            <button onClick={enviarParaAnalise} className={styles.buttonCheck}>
+              <img src={Check} alt="ícone de check" />
+              <p>Enviar para Análise</p>
+            </button>
+          </div>
 
-      <div>
-        <button className={styles.buttonX}>
-          <img src={imgX} alt="ícone de cancelar" />
-          <p>Cancelar Solicitação</p>
-        </button>
-      </div>
-    </footer>
+          <div>
+            <button className={styles.buttonX}>
+              <img src={imgX} alt="ícone de cancelar" />
+              <p>Cancelar Solicitação</p>
+            </button>
+          </div>
+        </footer>
 
       </div>
     </div>
