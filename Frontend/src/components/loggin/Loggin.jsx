@@ -17,6 +17,12 @@ const [senha, setSenha] = useState("") //Criando o estado para a senha
 
 const fazerLogin = async (e) =>  {
   e.preventDefault() //Previnindo o comportamento padrão do formulário
+
+  if (!email || !senha) {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
+
   try {
     const resposta = await api.post("/colaborador/login", { email, senha }) //Fazendo a requisição para a api
     console.log(resposta.data) //Exibindo a resposta da api no console
