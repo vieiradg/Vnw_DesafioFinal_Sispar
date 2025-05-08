@@ -18,7 +18,7 @@ const [senha, setSenha] = useState("") //Criando o estado para a senha
 const fazerLogin = async (e) =>  {
   e.preventDefault() //Previnindo o comportamento padrão do formulário
 
-  if (!email || !senha) {
+  if (!email.trim() || !senha.trim()) {
     alert("Por favor, preencha todos os campos.");
     return;
   }
@@ -44,16 +44,36 @@ const fazerLogin = async (e) =>  {
           <p>Sistema de Emissão de Boletos e Parcelamento</p>
         </div>
 
-        <form action="">
-          <input type="email" name="email" id="iemail" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-          <input type="password" name="password" id="ipassword" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
-          <a href=""> Esqueci minha senha </a>
-          
+        <form onSubmit={fazerLogin}>
+          <input
+            type="email"
+            name="email"
+            id="iemail"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            name="password"
+            id="ipassword"
+            placeholder="Senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
+
+          <a href="">Esqueci minha senha</a>
+
           <div className={styles.buttonGroup}>
-          <button className={styles.buttonEscuro} onClick={fazerLogin}> Entrar</button>
-            <button className={styles.buttonClaro}>Criar conta</button>
+            <button type="submit" className={styles.buttonEscuro}>
+              Entrar
+            </button>
+            <button type="button" className={styles.buttonClaro}>
+              Criar conta
+            </button>
           </div>
         </form>
+
       </section>
     </main>
   );
