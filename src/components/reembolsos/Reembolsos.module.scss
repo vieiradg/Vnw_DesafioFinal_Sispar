@@ -84,19 +84,18 @@ padding: 6px;
 }
 
 .containerSistema{
-    display: flex;
-    width: 9vw;
-   // border: solid;
-    justify-content: space-between;
-
+  display: flex;
+  width: 9vw;
+  //border: solid;
+  justify-content: space-between;
 }
 
 .centralizar{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    //align-items: flex-start;
- //   border:solid green;
-   padding-left: 20rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //align-items: flex-start;
+  //border:solid green;
+  padding-left: 20rem;
 }

@@ -44,7 +44,7 @@ const fazerLogin = async (e) =>  {
           <p>Sistema de Emissão de Boletos e Parcelamento</p>
         </div>
 
-        <form action="">
+        <form className={styles.formLogin} action="">
           <input type="email" name="email" id="iemail" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
           <input type="password" name="password" id="ipassword" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
           <a href=""> Esqueci minha senha </a>

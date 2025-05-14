@@ -101,8 +101,16 @@ function Solicitacao() {
     }
   }, [foiEnviado]); // O useEffect é chamado quando o estado foiEnviado muda
 
+  const totalFaturado = dadosReembolso.reduce((total, item) => {
+  return total + (Number(item.valorFaturado) || 0);
+}, 0);
+
+  const totalDespesa = dadosReembolso.reduce((total, item) => {
+  return total + (Number(item.despesa) || 0);
+}, 0);
+
   return (
-    <div className={styles.layoutSolicitacao}>
+   <div className={styles.layoutSolicitacao}>
       <NavBar />
 
       <div className={styles.containerPrincipalSolicitacao}>
@@ -287,23 +295,41 @@ function Solicitacao() {
         <footer className={styles.containerFooter}>
           <div className={styles.inputFooterFaturado}>
             <label htmlFor="">Total Faturado</label>
-            <input type="text" />
+            <input 
+              type="text" 
+              value={totalFaturado.toFixed(2)} 
+              readOnly 
+            />
           </div>
 
           <div className={styles.inputFooterDespesa}>
             <label htmlFor="">Total Despesa</label>
-            <input type="text" />
+            <input 
+              type="text" 
+              value={totalDespesa.toFixed(2)} 
+              readOnly 
+            />
           </div>
 
           <div>
-            <button onClick={enviarParaAnalise} className={styles.buttonCheck}>
+            <button 
+              onClick={enviarParaAnalise} 
+              className={styles.buttonCheck}
+              disabled={dadosReembolso.length === 0} // Desabilita se não houver dados
+            >
               <img src={Check} alt="ícone de check" />
               <p>Enviar para Análise</p>
             </button>
           </div>
 
           <div>
-            <button className={styles.buttonX}>
+            <button 
+              onClick={() => {
+                setDadosReembolso([]); // Limpa a tabela
+                limparCampos(); // Limpa os campos do formulário
+              }} 
+              className={styles.buttonX}
+            >
               <img src={imgX} alt="ícone de cancelar" />
               <p>Cancelar Solicitação</p>
             </button>

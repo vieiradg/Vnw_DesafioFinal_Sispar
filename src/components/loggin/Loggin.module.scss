@@ -1,127 +1,204 @@
 main {
   display: flex;
+  flex-direction: column;
 }
 
 .Capa {
-  width: 65%;
-  height: 100vh;
+  width: 100%;
+  height: 30vh;
   background-image: url("../../assets/Tela\ Login/imagem tela de login.png");
   background-repeat: no-repeat;
-  background-size: 100% 100vh;
+  background-size: cover;
   background-position: center;
 }
 
 .containerLogin {
-  width: 35%;
+  width: 100%;
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
-  .containerTitulo {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 20vh;
+.containerTitulo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
 
-    .logo {
-      width: 116px;
-      height: 52px;
-    }
+.containerTitulo .logo {
+  width: 116px;
+  height: 52px;
+  margin-bottom: 1rem;
+}
 
-    h1 {
-      font-size: 2rem;
-      width: 15vw;
-      text-align: center;
-    }
+.containerTitulo h1 {
+  font-size: 1.5rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
 
-    p {
-      color: #0844C4;
-      font-weight: 700;
-    }
+.containerTitulo p {
+  color: #0844C4;
+  font-weight: 700;
+}
+
+.formLogin {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formLogin input {
+  width: 100%;
+  height: 48px;
+  margin-bottom: 1rem;
+  border: 1px solid #CBD4E1;
+  padding: 0 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.formLogin a {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #23282F;
+  margin: 0.5rem 0 1.5rem;
+  text-decoration: none;
+  position: relative;
+}
+
+.formLogin a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: #23282F;
+  transition: width 0.3s ease-in-out;
+}
+
+.formLogin a:hover::after {
+  width: 100%;
+}
+
+.buttonGroup {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.buttonGroup button {
+  flex: 1;
+  height: 48px;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.buttonEscuro {
+  background-color: #001A3D;
+}
+
+.buttonEscuro:hover {
+  background-color: #00355E;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.buttonClaro {
+  background-color: #00BEDD;
+}
+
+.buttonClaro:hover {
+  background-color: #00A8C4;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Media Queries para diferentes tamanhos de tela */
+
+/* Tablet e telas médias */
+@media (min-width: 768px) {
+  main {
+    flex-direction: row;
+    height: 100vh;
   }
-
-  form {
-    height: 22vh;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-
-    input {
-      height: 5vh;
-      width: 17vw;
-      border: 1px solid #CBD4E1;
-      padding: 5px;
-      border-radius: 6px;
-    }
-
-    a {
-      font-size: 16px;
-      font-weight: 400;
-      color: #23282F;
-      margin-top: 1vh;
-      margin-bottom: 2vh;
-      text-decoration: none;
-      position: relative;
-    
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -2px; /* Distância da borda */
-        width: 0;
-        height: 2px;
-        background-color: #23282F; /* Cor da borda */
-        transition: width 0.3s ease-in-out;
-      }
-    
-      &:hover::after {
-        width: 100%;
-      }
-    }
-
-    .buttonGroup {
-      width: 15vw;
-      height: 4vh;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-    
-      button {
-        width: 6vw;
-        height: 5.5vh;
-        border-radius: 6px;
-        color: #FFFFFF;
-        font-weight: 700;
-        font-size: 1rem;
-        border: none;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-      }
-    
-      .buttonEscuro {
-        background-color: #001A3D;
-    
-        &:hover {
-          background-color: #00355E;
-          transform: translateY(-4px);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-      }
-    
-      .buttonClaro {
-        background-color: #00BEDD;
-    
-        &:hover {
-          background-color: #00A8C4;
-          transform: translateY(-4px);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-      }
-    }    
+  
+  .Capa {
+    width: 50%;
+    height: 100vh;
+  }
+  
+  .containerLogin {
+    width: 50%;
+    padding: 2rem;
+  }
+  
+  .containerTitulo h1 {
+    font-size: 1.8rem;
   }
 }
 
-// ---------------------------------
+/* Desktop e telas grandes */
+@media (min-width: 1024px) {
+  .Capa {
+    width: 65%;
+  }
+  
+  .containerLogin {
+    width: 35%;
+  }
+  
+  .containerTitulo h1 {
+    font-size: 2rem;
+    width: 80%;
+  }
+  
+  .formLogin {
+    width: 80%;
+  }
+}
+
+/* Telas muito grandes */
+@media (min-width: 1440px) {
+  .containerTitulo {
+    margin-bottom: 3rem;
+  }
+  
+  .formLogin input {
+    height: 52px;
+  }
+  
+  .buttonGroup button {
+    height: 52px;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 375px) {
+  .containerTitulo h1 {
+    font-size: 1.3rem;
+  }
+  
+  .buttonGroup {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .buttonGroup button {
+    width: 100%;
+  }
+}

@@ -51,9 +51,7 @@ function Reembolsos() {
 
           <section className={styles.containerStatus}>
             <div>
-               
-                      <img className={styles.img1} src={NumeroSolicitados} alt="" />  
-                
+              <img className={styles.img1} src={NumeroSolicitados} alt="" />   
               <h4>182</h4>
               <p>Solicitados</p>
             </div>
